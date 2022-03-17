@@ -1,0 +1,9 @@
+{
+  "name": "y",
+  "version": "0.1.0",
+  "description": "Front end react application for task collaborator app",
+  "main": "index.js",
+  "repository": "https://github.com/inI7ain/moot-react.git",
+  "author": "inI7ain <70217998+inI7ain@users.noreply.github.com>",
+  "license": "MIT"
+}
