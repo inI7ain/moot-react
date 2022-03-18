@@ -16,11 +16,11 @@ export default class LoginForm extends Component {
 	}
 
 	onUserInputChange = (event) => {
-		this.setState({ username: event.target.value });
+		this.setState({ email: event.target.value });
 	};
 
 	onPasswordInputChange = (event) => {
-		this.setState({ password: event.target.value }, () => {});
+		this.setState({ password: event.target.value });
 	};
 
 	// a this bind miatt csak es6 fn szintaxis felel meg
@@ -33,16 +33,18 @@ export default class LoginForm extends Component {
 
 		// fetch API
 		fetch(
-			"http://localhost:3000/users/login", 
+			"http://localhost:3001/users/login", 
 			{
-				method: "post",
+				method: "POST",
 				body: JSON.stringify({
 					email,
 					password,
-				}
-			),
-			headers: { "Content-Type": "application/json" },
-		})
+				}),
+				headers: { 
+					"Content-Type": "application/json",
+				},
+			}
+		)
 		.then((res) => res.json())
 		.then((json) => console.log(json))
 		.catch((err) => console.log(err));
