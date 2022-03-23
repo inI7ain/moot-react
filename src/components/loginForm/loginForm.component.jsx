@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import "./loginFormStyle.css";
+import "./loginForm.styles.scss";
 
 export default class LoginForm extends Component {
 	constructor() {

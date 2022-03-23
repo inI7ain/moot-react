@@ -1,3 +1,5 @@
+import "./signupForm.styles.scss";
+
 
 export default function SignupForm() {
 	return (
