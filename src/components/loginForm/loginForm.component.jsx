@@ -1,114 +1,89 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
+import { Outlet, Link } from "react-router-dom";
 
 import "./loginForm.styles.scss";
 
-export default class LoginForm extends Component {
-	constructor() {
-		console.log("constructor");
-		super();
+export default function LoginForm() {
+	
+	const [stEmail, setEmail] = useState("");
+	const [stPassword, setPassword] = useState("");
+	const [stLoginDisabled, setLoginDisabled] = useState(true);
+	const [stIsLoggingIn, setIsLoggingIn] = useState(false);
 
-		this.state = {
-			email: "",
-			password: "",
-			loginDisabled: true,
-			isLoggingIn: false,
-		};
-	}
+	const { t, i18n } = useTranslation();
 
-	onUserInputChange = (event) => {
-		this.setState({ email: event.target.value });
-	};
-
-	onPasswordInputChange = (event) => {
-		this.setState({ password: event.target.value });
-	};
-
-	// a this bind miatt csak es6 fn szintaxis felel meg
-	onLoginAttempt = (event) => {
-		this.setState({ isLoggingIn: true });
-
-		const { password, email } = this.state;
-
-		// get data from state
-
-		// fetch API
-		fetch(
-			"http://localhost:3001/users/login", 
-			{
-				method: "POST",
-				body: JSON.stringify({
-					email,
-					password,
-				}),
-				headers: { 
-					"Content-Type": "application/json",
-				},
+	const onLoginAttempt = async (event) => {
+		try {	
+			setIsLoggingIn(stIsLoggingIn);
+			const login = await fetch(
+				"http://localhost:3001/users/login", 
+				{
+					method: "POST",
+					body: JSON.stringify({
+						stEmail,
+						stPassword,
+					}),
+					headers: { 
+						"Content-Type": "application/json",
+					},
+				}
+			)
+			if (login) {
+				console.log(login);
 			}
-		)
-		.then((res) => res.json())
-		.then((json) => console.log(json))
-		.catch((err) => console.log(err));
+		} catch (error) {
+			console.log(error);
+		}	
 	};
 
-	render() {
-		console.log("render");
-		const { isLoggingIn, loginDisabled } = this.state;
-		const { onUserInputChange, onPasswordInputChange, onLoginAttempt } =
-			this;
-
-		if (isLoggingIn) {
-			return (
-				<div>
-					<p>Sending login request...</p>
-				</div>
-			);
+	useEffect(() => {
+		// validate isEmail
+		if (stPassword.length < 8 || stEmail.length < 5) {
+			setLoginDisabled(true);
 		} else {
-			return (
-				<div className="loginFormFrame">
-					<form>
-						<label htmlFor="emailInput"></label>
-						<input
-							name="emailInput"
-							type="text"
-							placeholder="e.g. saraJ7"
-							onChange={(event) => {
-								onUserInputChange(event);
-							}}
-						/>
-
-						<label htmlFor="passwordInput"></label>
-						<input
-							name="passwordInput"
-							type="password"
-							onChange={(event) => {
-								onPasswordInputChange(event);
-							}}
-						/>
-
-						<button
-							className="loginBtn"
-							disabled={loginDisabled}
-							onMouseUp={(event) => {
-								onLoginAttempt(event);
-							}}
-						>
-							Bejelentkezés
-						</button>
-					</form>
-				</div>
-			);
+			setLoginDisabled(false);
 		}
-	}
+	}, [stEmail, stPassword]);
 
-	componentDidUpdate(prevProps, prevState) {
-		const { password, email } = this.state;
-		if (prevState.email !== email || prevState.password !== password) {
-			// validate isemail
-			if (password.length < 8 || email.length < 5) {
-				this.setState({ loginDisabled: true });
-			} else {
-				this.setState({ loginDisabled: false });
-			}
-		}
-	}
+	return stIsLoggingIn ? (
+		<div>
+			<p>Sending login request...</p>
+		</div>
+	) : (
+		<div className="loginFormFrame">
+			<form>
+				<label htmlFor="emailInput"></label>
+				<input
+					name="emailInput"
+					type="text"
+					placeholder="e.g. saraJ7"
+					onChange={(event) => {
+						setEmail(event.target.value);
+					}}
+				/>
+
+				<label htmlFor="passwordInput"></label>
+				<input
+					name="passwordInput"
+					type="password"
+					onChange={(event) => {
+						setPassword(event.target.value);
+					}}
+				/>
+
+				<button
+					className="loginBtn"
+					disabled={stLoginDisabled}
+					onMouseUp={(event) => {
+						onLoginAttempt(event);
+					}}
+				>
+					Bejelentkezés
+				</button>
+			</form>
+			<Link className="signupLink" to="/signup">
+				<p>Click here to sign up</p>
+			</Link>
+		</div>
+	);
 }
