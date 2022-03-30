@@ -10,9 +10,12 @@ import './App.scss';
 function App() {
   return (
       <Routes>
-        <Route path="/login" element={<LoginForm />} />
+        {/* Fiókkal kapcsolatos */}
+        <Route index element={<LoginForm />} /> {/* index - alapértelmezett útvonal */}
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/logout" element={<SignupForm />} />
+
+        {/* App navigáció */}
         <Route path="/home" element={<Home />}>
 
         </Route>
