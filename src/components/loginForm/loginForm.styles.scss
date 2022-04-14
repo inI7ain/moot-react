@@ -1,11 +1,14 @@
 #root {
 	height: 100vh;
 	width: 100vw;
+	overflow: hidden;
 }
 
 .loginFormContainer {
 	flex: auto;
 	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 	height: 100%;
 	width: 100%;
 	align-items: center;
@@ -13,32 +16,63 @@
 	background-size: 100vw 100vh;
 	background-repeat: no-repeat;
 	// box-shadow: inset 4px 3px 8px 1px #969696!important;
-	opacity: 0.9;
-	transform: scale(1.1);
 	background-image: url("./assets/background.jpg");
+
+	.logoFrame {
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 25px;
+
+		.logoImg {
+			width: 150px;
+    		height: 150px;
+		}
+	}
 
 
 	&:hover {
-		cursor: pointer;
 		opacity: 1.0;
+		transform: scale(1.1);
+		transition: transform 3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+	}
+
+	&:not(:hover) {
 		transform: scale(1.0);
-		transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+		transition: transform 3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 	}
 
 	.loginFormFrame {
 		display: flex;
-		height: 35%;
-		width: 25%;
+		flex-direction: column;
+		height: 38%;
+		min-width: 250px;
+		width: 18%;
 		padding: 5px;
 		border: 1px solid lightgray;
 		align-items: center;
 		justify-content: center;
 		border-radius: 12px;
-		opacity: 0.9;
+		opacity: 0.85;
 		background: white;
+		box-shadow: rgba(99, 99, 110, 0.2) 0px 7px 29px 0px;
+
+		&:hover {
+			opacity: 1.0;
+		}
 
 		&:last-child {
 			text-align: center;
+		}
+
+		.loginMsg {
+			font-weight: 600;
+		}
+
+		.topSeparator {
+			width: 100%;
+			border: 1px solid lightgray;
+			border-radius: 1px;
+			margin-bottom: unset;
 		}
 	
 		.loginForm {
@@ -56,11 +90,16 @@
 				height: 125px;
 			}
 
-			.separator {
+			.bottomSeparator {
 				width: 100%;
 				border: 1px solid rgba(68, 168, 168, 50);
 				border-radius: 1px;
 				margin-bottom: unset;
+			}
+
+			.loginBtn {
+				background-color: rgba(68, 168, 168, 50);
+				color: white;
 			}
 		}
 	}
