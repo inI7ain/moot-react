@@ -1,18 +1,24 @@
-import { useEffect, useState, Fragment } from "react";
-import { Outlet, Link } from "react-router-dom";
-import VerticalLayout from "../verticalLayout/verticalLayout.component";
-// import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+import "../../localization/i18n";
 
 import "./loginForm.styles.scss";
 
 export default function LoginForm() {
+
+	const navigate = useNavigate();
+	const { t, i18n } = useTranslation();
 	
 	const [stEmail, setEmail] = useState("");
 	const [stPassword, setPassword] = useState("");
 	const [stLoginDisabled, setLoginDisabled] = useState(true);
 	const [stIsLoggingIn, setIsLoggingIn] = useState(false);
 
-	// const { t, i18n } = useTranslation();
+	const changeLanguage = (lng) => {
+		i18n.changeLanguage(lng);
+	};
 
 	// muszáj ES6-os fn-nek lennie a this binding miatt
 	const onLoginAttempt = async (event) => {
@@ -34,7 +40,8 @@ export default function LoginForm() {
 				);
 
 				if (loginResult) {
-					console.log(loginResult.json());
+					console.log(loginResult);
+					navigate("/");
 					// válasz kezelés, stLoggingIn visszaállítás, -> route
 				} else {
 					// nincs válasz kezelés
@@ -56,10 +63,16 @@ export default function LoginForm() {
 
 	return stIsLoggingIn ? (
 		<div className="loginFormLoader">
-			<p>Bejelentkezés...</p>
+			<p>{t('description')}</p>
 		</div>
 	) : (
 		<div className="loginFormContainer" >
+			<button type="button" onClick={() => changeLanguage('en')}>
+          		en
+        	</button>
+			<button type="button" onClick={() => changeLanguage('hu')}>
+          		hu
+        	</button>
 			<div className="logoFrame">
 				<img 
 					className="logoImg"
@@ -96,7 +109,7 @@ export default function LoginForm() {
 						}}
 						type="submit"
 					>
-						Bejelentkezés
+						{t("loginBtn")}
 					</button>
 					<div className="bottomSeparator" />
 					<div className="signUpFrame">

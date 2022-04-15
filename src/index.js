@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import "./i18n.js";
+import "./localization/i18n";
 
 import './index.scss';
 
