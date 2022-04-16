@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ButtonGroup, Button } from "@mui/material";
 
 import "../../localization/i18n";
 
@@ -41,10 +42,11 @@ export default function LoginForm() {
 
 				if (loginResult) {
 					console.log(loginResult);
-					navigate("/");
-					// válasz kezelés, stLoggingIn visszaállítás, -> route
+					navigate("/home");
+					// válasz token beállítás, stLoggingIn visszaállítás
 				} else {
 					// nincs válasz kezelés
+					alert("Unable to login");
 				}
 			}
 		} catch (error) {
@@ -53,7 +55,7 @@ export default function LoginForm() {
 	};
 
 	useEffect(() => {
-		// validate isEmail
+		// validate isEmail?
 		if (stPassword.length < 8 || stEmail.length < 5) {
 			setLoginDisabled(true);
 		} else {
@@ -67,12 +69,11 @@ export default function LoginForm() {
 		</div>
 	) : (
 		<div className="loginFormContainer" >
-			<button type="button" onClick={() => changeLanguage('en')}>
-          		en
-        	</button>
-			<button type="button" onClick={() => changeLanguage('hu')}>
-          		hu
-        	</button>
+			<ButtonGroup variant="contained" className="languageSelector">
+				<Button onClick={() => changeLanguage('en')}>English</Button>
+				<Button onClick={() => changeLanguage('hu')}>Hungarian</Button>
+				<Button onClick={() => changeLanguage('it')}>Italian</Button>
+			</ButtonGroup>
 			<div className="logoFrame">
 				<img 
 					className="logoImg"
@@ -109,7 +110,7 @@ export default function LoginForm() {
 						}}
 						type="submit"
 					>
-						{t("loginBtn")}
+						{t("loginBtn.description")}
 					</button>
 					<div className="bottomSeparator" />
 					<div className="signUpFrame">

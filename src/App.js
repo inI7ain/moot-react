@@ -7,7 +7,10 @@ import Home from "./components/home/home.component";
 import './App.scss';
 
 
-function App() {
+export default function App() {
+
+  // const [token, setToken] = useState();
+
   return (
       <Routes>
         {/* Fiókkal kapcsolatos */}
@@ -22,5 +25,3 @@ function App() {
       </Routes>
   );
 }
-
-export default App;

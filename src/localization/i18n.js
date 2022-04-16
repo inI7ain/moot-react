@@ -3,8 +3,9 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-import * as huLocale from "../localization/hu.json";
-import * as enLocale from "../localization/en.json";
+import * as huLocale from "../localization/translations/hu.json";
+import * as enLocale from "../localization/translations/en.json";
+import * as itLocale from "../localization/translations/it.json";
 
 i18n
   // load translation using http -> see /public/locales
@@ -20,10 +21,12 @@ i18n
   .init({
     fallbackLng: 'hu',
     debug: true,
-	resources: {
-		en: enLocale,
-		hu: huLocale
-	},
+    lng: "hu",
+	  resources: {
+		  en: { translation: enLocale},
+		  hu: { translation: huLocale},
+      it: { translation: itLocale}
+	  },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
