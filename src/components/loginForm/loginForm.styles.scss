@@ -8,7 +8,7 @@
 	flex: auto;
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	position: relative;
 	height: 100%;
 	width: 100%;
@@ -38,9 +38,9 @@
 	.loginFormFrame {
 		display: flex;
 		flex-direction: column;
-		height: 38%;
+		//  height: 38%;
 		min-width: 250px;
-		width: 18%;
+		// width: 18%;
 		padding: 5px;
 		border: 1px solid lightgray;
 		align-items: center;
@@ -103,6 +103,7 @@
 				color: white;
 			}
 		}
+
 	}
 }
 

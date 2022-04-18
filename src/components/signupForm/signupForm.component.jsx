@@ -122,7 +122,7 @@ export default function SignupForm() {
 					<button
 						className="signupBtn"
 						disabled={stSignupDisabled}
-						onMouseUp={(event) => {
+						onClick={(event) => {
 							onSignupAttempt(event);
 						}}
 					>

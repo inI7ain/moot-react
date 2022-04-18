@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ButtonGroup, Button } from "@mui/material";
+import ReactModal from "react-modal";
 
 import "../../localization/i18n";
 
 import "./loginForm.styles.scss";
+import { width } from "@mui/system";
 
 export default function LoginForm() {
-
+	const modalWidth = 150;
 	const navigate = useNavigate();
 	const { t, i18n } = useTranslation();
 	
@@ -16,6 +18,7 @@ export default function LoginForm() {
 	const [stPassword, setPassword] = useState("");
 	const [stLoginDisabled, setLoginDisabled] = useState(true);
 	const [stIsLoggingIn, setIsLoggingIn] = useState(false);
+	const [stModalOpen, setModalOpen] = useState(false);
 
 	const changeLanguage = (lng) => {
 		i18n.changeLanguage(lng);
@@ -26,7 +29,7 @@ export default function LoginForm() {
 		try {	
 			if (!stLoginDisabled) {
 				setIsLoggingIn(stIsLoggingIn);
-				const loginResult = await fetch(
+				const loginResultResponse = await fetch(
 					"http://localhost:3001/users/login", 
 					{
 						method: "POST",
@@ -40,13 +43,15 @@ export default function LoginForm() {
 					}
 				);
 
-				if (loginResult) {
+				const loginResult = await loginResultResponse.json();
+
+				if (loginResult.success) {
 					console.log(loginResult);
 					navigate("/home");
 					// válasz token beállítás, stLoggingIn visszaállítás
 				} else {
 					// nincs válasz kezelés
-					alert("Unable to login");
+					setModalOpen(true);
 				}
 			}
 		} catch (error) {
@@ -105,7 +110,7 @@ export default function LoginForm() {
 					<button
 						className="loginBtn"
 						disabled={stLoginDisabled}
-						onMouseUp={(event) => {
+						onClick={(event) => {
 							onLoginAttempt(event);
 						}}
 						type="submit"
@@ -126,6 +131,26 @@ export default function LoginForm() {
 					</div>
 				</form>
 			</div>
+			<ReactModal 
+				className="modalFrame"
+				isOpen={stModalOpen}
+				contentLabel={t("loginModalCloseBtn")}
+				style={{
+					content: {
+						width: modalWidth,
+						height: 150,
+						backgroundColor: "aqua",
+						position: "absolute",
+						top: "calc(50vh - 75px)",
+						left: `calc(50vw - ${modalWidth / 2}px)`
+					}
+				}}
+			>
+				<button className="modalCloseBtn" onClick={(event) => {
+					setModalOpen(false);
+				}}>Close</button>
+				<p>hello from modal</p>
+			</ReactModal>
 		</div>
 	);
 }
