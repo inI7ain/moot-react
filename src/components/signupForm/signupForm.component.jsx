@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PasswordStrengthBar from 'react-password-strength-bar';
+import { Button, TextField } from "@mui/material";
+import ReactModal from "react-modal";
 
 import "./signupForm.styles.scss";
 
@@ -74,23 +76,26 @@ export default function SignupForm() {
 				<div className="topSeparator" />
 				<p className="signupMsg">Hozzon létre új fiókot</p>
 				<form className="signupForm">
-					<input 
+					<TextField 
 						type="text"
+						variant="standard"
 						className="usernameInput"
 						placeholder="felhasználónév"
 						onChange={(evt) => {
 							setUsername(evt.target.value);
 						}}
 					/>
-					<input 
+					<TextField 
 						type="text"
+						variant="standard"
 						className="emailInput"
 						placeholder="e-mail cím"
 						onChange={(evt) => {
 							setEmail(evt.target.value);
 						}}
 					/>
-					<input 
+					<TextField
+						variant="standard" 
 						type="password"
 						className="passwordInput"
 						placeholder="jelszó"
@@ -98,8 +103,9 @@ export default function SignupForm() {
 							setPassword(evt.target.value);
 						}}
 					/>
-					<input 
+					<TextField 
 						type="password"
+						variant="standard"
 						className="passwordConfirmInput"
 						placeholder="jelszó megerősítése"
 						onChange={(evt) => {
@@ -119,7 +125,8 @@ export default function SignupForm() {
 							A beírt jelszavak nem egyeznek!
 						</div> : <></>
 					}
-					<button
+					<Button
+						variant="contained"
 						className="signupBtn"
 						disabled={stSignupDisabled}
 						onClick={(event) => {
@@ -127,7 +134,7 @@ export default function SignupForm() {
 						}}
 					>
 						Regisztráció
-					</button>
+					</Button>
 					<Link className="loginLink" to="/">
 						<p>Van már fiókja?</p>
 					</Link>

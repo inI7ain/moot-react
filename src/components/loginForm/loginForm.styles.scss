@@ -1,3 +1,9 @@
+$standardRadius: 12px;
+$separatorRadius: 1px;
+$modalHeight: 125px;
+$modalWidth: 350px;
+
+
 #root {
 	height: 100vh;
 	width: 100vw;
@@ -18,10 +24,22 @@
 	background-repeat: no-repeat;
 	background-image: url("../../assets/loginBackground.webp");
 
-	.languageSelector {
+	.languageSelectorFrame {
 		position: absolute;
 		top: 4vh;
 		right: 2vw;
+
+		.languageSelector {
+			color: whitesmoke;
+
+			& > * {
+				color: whitesmoke;
+			}
+		}
+
+		.languageSelectorLabel {
+			color: whitesmoke;
+		}
 	}
 
 	.logoFrame {
@@ -38,14 +56,12 @@
 	.loginFormFrame {
 		display: flex;
 		flex-direction: column;
-		//  height: 38%;
 		min-width: 250px;
-		// width: 18%;
 		padding: 5px;
 		border: 1px solid lightgray;
 		align-items: center;
 		justify-content: center;
-		border-radius: 12px;
+		border-radius: $standardRadius;
 		opacity: 0.85;
 		background: white;
 		box-shadow: rgba(99, 99, 110, 0.2) 0px 7px 29px 0px;
@@ -72,7 +88,7 @@
 		.topSeparator {
 			width: 100%;
 			border: 1px solid lightgray;
-			border-radius: 1px;
+			border-radius: $separatorRadius;
 			margin-bottom: unset;
 		}
 	
@@ -87,23 +103,42 @@
 			}
 
 			.logo {
-				width: 125px;
-				height: 125px;
+				width: 64px;
+				height: 64px;
 			}
 
 			.bottomSeparator {
 				width: 100%;
 				border: 1px solid rgba(68, 168, 168, 50);
-				border-radius: 1px;
+				border-radius: $separatorRadius;
 				margin-bottom: unset;
 			}
 
-			.loginBtn {
+			/* .loginBtn {
 				background-color: rgba(68, 168, 168, 50);
 				color: white;
-			}
+			} */
 		}
 
 	}
+
+	.loginFormModalFrame {
+		width: $modalWidth;
+		height: $modalHeight;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 12;
+		background-color: "whitesmoke";
+		position: "absolute";
+		top: 50vh;
+		left: 50vw;
+
+		& > p {
+			text-align: center;
+		}
+	}
+
 }
 

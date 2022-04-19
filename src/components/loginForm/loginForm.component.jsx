@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ButtonGroup, Button } from "@mui/material";
+import {
+	Button,
+	Select,
+	TextField,
+	MenuItem,
+	InputLabel,
+	FormControl,
+} from "@mui/material";
+import ReactLoading from "react-loading";
 import ReactModal from "react-modal";
 
 import "../../localization/i18n";
 
 import "./loginForm.styles.scss";
-import { width } from "@mui/system";
 
 export default function LoginForm() {
-	const modalWidth = 150;
+	const modalWidth = 300,
+		  modalHeight = 150;
 	const navigate = useNavigate();
 	const { t, i18n } = useTranslation();
-	
+
 	const [stEmail, setEmail] = useState("");
 	const [stPassword, setPassword] = useState("");
 	const [stLoginDisabled, setLoginDisabled] = useState(true);
@@ -26,20 +34,20 @@ export default function LoginForm() {
 
 	// muszáj ES6-os fn-nek lennie a this binding miatt
 	const onLoginAttempt = async (event) => {
-		try {	
+		try {
 			if (!stLoginDisabled) {
-				setIsLoggingIn(stIsLoggingIn);
+				setIsLoggingIn(true);
 				const loginResultResponse = await fetch(
-					"http://localhost:3001/users/login", 
+					"http://localhost:3001/users/login",
 					{
 						method: "POST",
 						body: JSON.stringify({
 							email: stEmail,
-							password: stPassword
+							password: stPassword,
 						}),
-						headers: { 
-							"Content-Type": "application/json"
-						}
+						headers: {
+							"Content-Type": "application/json",
+						},
 					}
 				);
 
@@ -51,12 +59,13 @@ export default function LoginForm() {
 					// válasz token beállítás, stLoggingIn visszaállítás
 				} else {
 					// nincs válasz kezelés
+					setIsLoggingIn(false);
 					setModalOpen(true);
 				}
 			}
 		} catch (error) {
 			console.log(error);
-		}	
+		}
 	};
 
 	useEffect(() => {
@@ -68,88 +77,157 @@ export default function LoginForm() {
 		}
 	}, [stEmail, stPassword]);
 
-	return stIsLoggingIn ? (
-		<div className="loginFormLoader">
-			<p>{t('description')}</p>
-		</div>
-	) : (
-		<div className="loginFormContainer" >
-			<ButtonGroup variant="contained" className="languageSelector">
-				<Button onClick={() => changeLanguage('en')}>English</Button>
-				<Button onClick={() => changeLanguage('hu')}>Hungarian</Button>
-				<Button onClick={() => changeLanguage('it')}>Italian</Button>
-			</ButtonGroup>
+	return (
+		<div className="loginFormContainer">
+			<FormControl
+				className="languageSelectorFrame"
+				variant="standard"
+				sx={{ m: 1, minWidth: 120 }}
+			>
+				<InputLabel
+					className="languageSelectorLabel"
+					id="lngSelectLabel"
+				>
+					{t("lngSelLbl.description")}
+				</InputLabel>
+				<Select
+					placeholder="Language"
+					labelId="lngSelectLabel"
+					className="languageSelector"
+					defaultValue={"hu"}
+					label="Language"
+				>
+					<MenuItem
+						onClick={(evt) => {
+							changeLanguage(evt.target.dataset.value);
+						}}
+						value={"en"}
+					>
+						English
+					</MenuItem>
+					<MenuItem
+						onClick={(evt) => {
+							changeLanguage(evt.target.dataset.value);
+						}}
+						value={"hu"}
+					>
+						Magyar
+					</MenuItem>
+					<MenuItem
+						onClick={(evt) => {
+							changeLanguage(evt.target.dataset.value);
+						}}
+						value={"it"}
+					>
+						Italiano
+					</MenuItem>
+				</Select>
+			</FormControl>
 			<div className="logoFrame">
-				<img 
+				<img
 					className="logoImg"
 					src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/chat-512.png"
 					alt="logo"
 				/>
 			</div>
-			<div className="loginFormFrame">
-				<h3>Moot</h3>
-				<div className="topSeparator" />
-				<p className="loginMsg">Bejelentkezés</p>
-				<form className="loginForm" onSubmit={(evt) => evt.preventDefault()}>
-					<input
-						name="emailInput"
-						type="text"
-						placeholder="e-mail cím"
-						onChange={(event) => {
-							setEmail(event.target.value);
-						}}
-					/>
-					<input
-						name="passwordInput"
-						type="password"
-						placeholder="jelszó"
-						onChange={(event) => {
-							setPassword(event.target.value);
-						}}
-					/>
-					<button
-						className="loginBtn"
-						disabled={stLoginDisabled}
-						onClick={(event) => {
-							onLoginAttempt(event);
-						}}
-						type="submit"
+			{!stIsLoggingIn &&
+				<div className="loginFormFrame">
+					<h3>Moot</h3>
+					<div className="topSeparator" />
+					<p className="loginMsg">{t("lgnFormLbl.description")}</p>
+					<form
+						className="loginForm"
+						onSubmit={(evt) => evt.preventDefault()}
 					>
-						{t("loginBtn.description")}
-					</button>
-					<div className="bottomSeparator" />
-					<div className="signUpFrame">
-						<p>Nincs még fiókja?</p>
-						<Link className="signupLink" to="/signup">
-							<p>Regisztráció</p>
-						</Link>
-					</div>
-					<div>
-						<Link className="pwResetLink" to="/pwReset">
-							<p>Elfelejtette a jelszavát?</p>
-						</Link>
-					</div>
-				</form>
-			</div>
-			<ReactModal 
-				className="modalFrame"
+						<TextField
+							name="emailInput"
+							variant="standard"
+							type="text"
+							placeholder={t("lgnFormEmailPlchdr.description")}
+							onChange={(event) => {
+								setEmail(event.target.value);
+							}}
+						/>
+						<TextField
+							name="passwordInput"
+							variant="standard"
+							type="password"
+							placeholder={t("lgnFormPwPlchldr.description")}
+							onChange={(event) => {
+								setPassword(event.target.value);
+							}}
+						/>
+						<Button
+							className="loginBtn"
+							variant="contained"
+							disabled={stLoginDisabled}
+							onClick={(event) => {
+								onLoginAttempt(event);
+							}}
+							type="submit"
+							disableElevation
+						>
+							{t("lgnFormLgnBtn.description")}
+						</Button>
+						<div className="bottomSeparator" />
+						<div className="signUpFrame">
+							<p>{t("lgnFormRegPrompt.description")}</p>
+							<Link
+								className="signupLink"
+								underline="hover"
+								to="/signup"
+							>
+								<p>{t("lgnFormRegLnk.description")}</p>
+							</Link>
+						</div>
+						<div className="bottomSeparator" />
+						<div>
+							<p>{t("lgnFormPwResPrompt.description")}</p>
+							<Link className="pwResetLink" to="/pwReset">
+								{t("lgnFormPwResLnk.description")}
+							</Link>
+						</div>
+					</form>
+				</div>
+			}
+			{stIsLoggingIn &&
+				<ReactLoading
+					type="bubbles"
+					color={"#44a8a8"}
+					height={125}
+					width={125}
+					disabled={!stIsLoggingIn}
+				/>
+			}	
+			<ReactModal
+				className="loginFormModalFrame"
 				isOpen={stModalOpen}
-				contentLabel={t("loginModalCloseBtn")}
+				contentLabel={t("lgnFormMdlContLbl.description")}
+				// onRequestClose={setIsLoggingIn(false)}
+				role="dialog"
+				shouldCloseOnEsc={true}
 				style={{
 					content: {
 						width: modalWidth,
 						height: 150,
-						backgroundColor: "aqua",
+						borderRadius: 12,
+						backgroundColor: "whitesmoke",
 						position: "absolute",
-						top: "calc(50vh - 75px)",
-						left: `calc(50vw - ${modalWidth / 2}px)`
-					}
+						top: `calc(50vh - ${modalHeight / 2}px)`,
+						left: `calc(50vw - ${modalWidth / 2}px)`,
+					},
 				}}
 			>
-				<button className="modalCloseBtn" onClick={(event) => {
-					setModalOpen(false);
-				}}>Close</button>
-				<p>hello from modal</p>
+				<p>{t("lgnFormMdlMsg.description")}</p>
+				<Button
+					className="modalCloseBtn"
+					variant="text"
+					onClick={(event) => {
+						setModalOpen(false);
+					}}
+				>
+					{t("lgnFormMdlCloseBtn.description")}
+				</Button>
 			</ReactModal>
 		</div>
 	);

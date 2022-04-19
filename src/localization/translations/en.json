@@ -1,8 +1,53 @@
 {
-	"loginBtn": {
+	"lgnFormLgnBtn": {
 		"title": "Login screen submit button",
 		"description": "Submit"
+	},
+	"lngSelLbl": {
+		"title": "Language Selector Label",
+		"description": "Language"
+	},
+	"lgnFormLbl": {
+		"title": "Login form label",
+		"description": "Login"
+	},
+	"lgnFormEmailPlchdr": {
+		"title": "Login form email input placeholder",
+		"description": "e-mail address"
+	},
+	"lgnFormPwPlchldr": {
+		"title": "Login form password input placeholder",
+		"description": "password"
+	},
+	"lgnFormRegPrompt": {
+		"title": "Login form registration prompt",
+		"description": "Don't have an account yet?"
+	},
+	"lgnFormRegLnk": {
+		"title": "Login form registration link",
+		"description": "Create an account"
+	},
+	"lgnFormPwResPrompt": {
+		"title": "Login form password reset prompt",
+		"description": "Forgot your password?"
+	},
+	"lgnFormPwResLnk": {
+		"title": "Login form password reset Link",
+		"description": "Reset password"
+	},
+	"lgnFormMdlContLbl": {
+		"title": "Login form modal window label",
+		"description": "Message"
+	},
+	"lgnFormMdlMsg": {
+		"title": "Login form unsuccessful login message",
+		"description": "Unable to login. Please try again."
+	},
+	"lgnFormMdlCloseBtn": {
+		"title": "Login form unsuccessful login modal close button",
+		"description": "Close"
 	}
+
 
 
 }

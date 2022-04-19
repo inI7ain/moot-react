@@ -1,6 +1,51 @@
 {
-	"loginBtn": {
-		"title": "Bejelentkező képernyő elküldés gombja",
+	"lgnFormLgnBtn": {
+		"title": "Login screen submit button",
+		"description": "Elküld"
+	},
+	"lngSelLbl": {
+		"title": "Language Selector Label",
+		"description": "Nyelv"
+	},
+	"lgnFormLbl": {
+		"title": "Login form label",
 		"description": "Bejelentkezés"
+	},
+	"lgnFormEmailPlchdr": {
+		"title": "Login form email input placeholder",
+		"description": "e-mail cím"
+	},
+	"lgnFormPwPlchldr": {
+		"title": "Login form password input placeholder",
+		"description": "jelszó"
+	},
+	"lgnFormRegPrompt": {
+		"title": "Login form registration prompt",
+		"description": "Nincs még fiókja?"
+	},
+	"lgnFormRegLnk": {
+		"title": "Login form registration link",
+		"description": "Fiók regisztrálása"
+	},
+	"lgnFormPwResPrompt": {
+		"title": "Login form password reset prompt",
+		"description": "Elfelejtette a jeszavát?"
+	},
+	"lgnFormPwResLnk": {
+		"title": "Login form password reset Link",
+		"description": "Jelszó visszaállítása"
+	},
+	"lgnFormMdlContLbl": {
+		"title": "Login form modal window label",
+		"description": "Üzenet"
+	},
+	"lgnFormMdlMsg": {
+		"title": "Login form unsuccessful login message",
+		"description": "Sikertelen bejelentkezés, próbálja újra."
+	},
+	"lgnFormMdlCloseBtn": {
+		"title": "Login form unsuccessful login modal close button",
+		"description": "Bezár"
 	}
+
 }
