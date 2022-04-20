@@ -1,0 +1,17 @@
+.languageSelectorFrame {
+	position: absolute!important;
+	top: 4vh;
+	right: 2vw;
+
+	.languageSelector {
+		color: whitesmoke;
+
+		& > * {
+			color: whitesmoke;
+		}
+	}
+
+	.languageSelectorLabel {
+		color: whitesmoke;
+	}
+}

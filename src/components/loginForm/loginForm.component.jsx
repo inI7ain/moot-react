@@ -3,24 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
 	Button,
-	Select,
 	TextField,
-	MenuItem,
-	InputLabel,
-	FormControl,
 } from "@mui/material";
 import ReactLoading from "react-loading";
 import ReactModal from "react-modal";
 
+import LanguageSelect from "../../languageSelect/languageSelect.component";
 import "../../localization/i18n";
 
 import "./loginForm.styles.scss";
 
 export default function LoginForm() {
 	const modalWidth = 300,
-		  modalHeight = 150;
+		  modalHeight = 100;
 	const navigate = useNavigate();
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 
 	const [stEmail, setEmail] = useState("");
 	const [stPassword, setPassword] = useState("");
@@ -28,10 +25,7 @@ export default function LoginForm() {
 	const [stIsLoggingIn, setIsLoggingIn] = useState(false);
 	const [stModalOpen, setModalOpen] = useState(false);
 
-	const changeLanguage = (lng) => {
-		i18n.changeLanguage(lng);
-	};
-
+	
 	// muszáj ES6-os fn-nek lennie a this binding miatt
 	const onLoginAttempt = async (event) => {
 		try {
@@ -50,11 +44,12 @@ export default function LoginForm() {
 						},
 					}
 				);
+				console.log(loginResultResponse);
 
 				const loginResult = await loginResultResponse.json();
+				console.log(loginResult);
 
-				if (loginResult.success) {
-					console.log(loginResult);
+				if (loginResult?.success) {
 					navigate("/home");
 					// válasz token beállítás, stLoggingIn visszaállítás
 				} else {
@@ -65,6 +60,8 @@ export default function LoginForm() {
 			}
 		} catch (error) {
 			console.log(error);
+			setModalOpen(true);
+			setIsLoggingIn(false);
 		}
 	};
 
@@ -79,50 +76,7 @@ export default function LoginForm() {
 
 	return (
 		<div className="loginFormContainer">
-			<FormControl
-				className="languageSelectorFrame"
-				variant="standard"
-				sx={{ m: 1, minWidth: 120 }}
-			>
-				<InputLabel
-					className="languageSelectorLabel"
-					id="lngSelectLabel"
-				>
-					{t("lngSelLbl.description")}
-				</InputLabel>
-				<Select
-					placeholder="Language"
-					labelId="lngSelectLabel"
-					className="languageSelector"
-					defaultValue={"hu"}
-					label="Language"
-				>
-					<MenuItem
-						onClick={(evt) => {
-							changeLanguage(evt.target.dataset.value);
-						}}
-						value={"en"}
-					>
-						English
-					</MenuItem>
-					<MenuItem
-						onClick={(evt) => {
-							changeLanguage(evt.target.dataset.value);
-						}}
-						value={"hu"}
-					>
-						Magyar
-					</MenuItem>
-					<MenuItem
-						onClick={(evt) => {
-							changeLanguage(evt.target.dataset.value);
-						}}
-						value={"it"}
-					>
-						Italiano
-					</MenuItem>
-				</Select>
-			</FormControl>
+			<LanguageSelect />
 			<div className="logoFrame">
 				<img
 					className="logoImg"
@@ -200,19 +154,25 @@ export default function LoginForm() {
 				/>
 			}	
 			<ReactModal
-				className="loginFormModalFrame"
+				bodyOpenClassName="loginFormModalFrame"
 				isOpen={stModalOpen}
 				contentLabel={t("lgnFormMdlContLbl.description")}
-				// onRequestClose={setIsLoggingIn(false)}
+				onRequestClose={() => {
+					setIsLoggingIn(false);
+				}}
 				role="dialog"
 				shouldCloseOnEsc={true}
+				ariaHideApp={false}
 				style={{
 					content: {
 						width: modalWidth,
-						height: 150,
+						height: modalHeight,
 						borderRadius: 12,
-						backgroundColor: "whitesmoke",
+						backgroundColor: "white",
+						boxShadow: "rgba(99, 99, 110, 0.2) 0px 7px 29px 0px",
 						position: "absolute",
+						border: "1px solid lightgray",
+						textAlign: "center",
 						top: `calc(50vh - ${modalHeight / 2}px)`,
 						left: `calc(50vw - ${modalWidth / 2}px)`,
 					},
@@ -221,7 +181,7 @@ export default function LoginForm() {
 				<p>{t("lgnFormMdlMsg.description")}</p>
 				<Button
 					className="modalCloseBtn"
-					variant="text"
+					variant="outlined"
 					onClick={(event) => {
 						setModalOpen(false);
 					}}

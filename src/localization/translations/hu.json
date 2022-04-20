@@ -46,6 +46,14 @@
 	"lgnFormMdlCloseBtn": {
 		"title": "Login form unsuccessful login modal close button",
 		"description": "Bezár"
+	},
+	"sgnpFormMdlContLbl": {
+		"title": "Signup form unsuccessful registration modal close button",
+		"description": "Bezár"
+	},
+	"sgnpFormMdlMsg": {
+		"title": "Signup form unsuccessful registration modal message",
+		"description": "A regisztráció sikertelen, próbálja újra."
 	}
 
 }

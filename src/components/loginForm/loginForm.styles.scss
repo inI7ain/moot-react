@@ -1,7 +1,7 @@
 $standardRadius: 12px;
 $separatorRadius: 1px;
-$modalHeight: 125px;
-$modalWidth: 350px;
+$modalHeight: 100px;
+$modalWidth: 300px;
 
 
 #root {
@@ -23,24 +23,6 @@ $modalWidth: 350px;
 	background-size: 100vw 100vh;
 	background-repeat: no-repeat;
 	background-image: url("../../assets/loginBackground.webp");
-
-	.languageSelectorFrame {
-		position: absolute;
-		top: 4vh;
-		right: 2vw;
-
-		.languageSelector {
-			color: whitesmoke;
-
-			& > * {
-				color: whitesmoke;
-			}
-		}
-
-		.languageSelectorLabel {
-			color: whitesmoke;
-		}
-	}
 
 	.logoFrame {
 		align-items: center;
@@ -69,12 +51,12 @@ $modalWidth: 350px;
 		&:hover {
 			opacity: 1.0;
 			transform: scale(1.1);
-			transition: transform 3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+			transition: transform 1.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 		}
 	
 		&:not(:hover) {
 			transform: scale(1.0);
-			transition: transform 3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+			transition: transform 1.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 		}
 
 		&:last-child {
@@ -123,20 +105,17 @@ $modalWidth: 350px;
 	}
 
 	.loginFormModalFrame {
-		width: $modalWidth;
-		height: $modalHeight;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 12;
-		background-color: "whitesmoke";
-		position: "absolute";
-		top: 50vh;
-		left: 50vw;
+		background-color: white;
+		position: absolute;
+		box-shadow: rgba(99, 99, 110, 0.2) 0px 7px 29px 0px;
 
 		& > p {
 			text-align: center;
+			margin-top: 50px!important;
+		}
+
+		&:last-child {
+			align-self: center;
 		}
 	}
 

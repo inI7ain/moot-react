@@ -46,6 +46,14 @@
 	"lgnFormMdlCloseBtn": {
 		"title": "Login form unsuccessful login modal close button",
 		"description": "Close"
+	},
+	"sgnpFormMdlContLbl": {
+		"title": "Signup form unsuccessful registration modal close button",
+		"description": "Close"
+	},
+	"sgnpFormMdlMsg": {
+		"title": "Signup form unsuccessful registration modal message",
+		"description": "Unable to create account. Please try again."
 	}
 
 
