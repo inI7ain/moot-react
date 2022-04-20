@@ -39,7 +39,7 @@ export default function SignupForm() {
 			if (!stSignupDisabled) {
 				setIsSigningUp(true);
 				const signupResultResponse = await fetch(
-					"http://localhost:3001/users/create",
+					"/apiv1/users/create",
 					{
 						method: "POST",
 						body: JSON.stringify({

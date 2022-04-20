@@ -32,7 +32,7 @@ export default function LoginForm() {
 			if (!stLoginDisabled) {
 				setIsLoggingIn(true);
 				const loginResultResponse = await fetch(
-					"http://localhost:3001/users/login",
+					"/apiv1/users/login",
 					{
 						method: "POST",
 						body: JSON.stringify({
