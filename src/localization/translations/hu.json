@@ -43,9 +43,25 @@
 		"title": "Login form unsuccessful login message",
 		"description": "Sikertelen bejelentkezés, próbálja újra."
 	},
+	"lgnFormMdlResetMsg": {
+		"title": "Login form unsuccessful login message",
+		"description": "A kért linket kiküldtük a megatodd e-mail címre."
+	},
 	"lgnFormMdlCloseBtn": {
 		"title": "Login form unsuccessful login modal close button",
 		"description": "Bezár"
+	},
+	"lgnFormResetEmailPlchdr": {
+		"title": "Login form unsuccessful login modal close button",
+		"description": "Registered e-mail address"
+	},
+	"lgnFormResetBtn": {
+		"title": "Signup form password requirement explanation",
+		"description": "Link küldése"
+	},
+	"lgnFormCxlResetBtn": {
+		"title": "Signup form password requirement explanation",
+		"description": "Mégsem"
 	},
 	"sgnpFormMdlContLbl": {
 		"title": "Signup form unsuccessful registration modal close button",
@@ -53,7 +69,55 @@
 	},
 	"sgnpFormMdlMsg": {
 		"title": "Signup form unsuccessful registration modal message",
-		"description": "A regisztráció sikertelen, próbálja újra."
+		"description": 
+			"A regisztráció sikertelen, ellenőrizze a beviteli adatokat majd próbálja újra. Ha a hiba továbbra is fennáll, úgy a szerver valószínűleg nem elérhető."
+	},
+	"sgnpFormUsrInputFldPlchdr": {
+		"title": "Signup form username input field placeholder",
+		"description": "felhasználónév"
+	},
+	"sgnpFormEmailInputFldPlchdr": {
+		"title": "Signup form email input field placeholder",
+		"description": "e-mail cím"
+	},
+	"sgnpFormPwInputFldPlchdr": {
+		"title": "Signup form password input field placeholder",
+		"description": "jelszó"
+	},
+	"sgnpFormPwCnfInputFldPlchdr": {
+		"title": "Signup form password input field placeholder",
+		"description": "jelszó megerősítése"
+	},
+	"sgnpFormPwMismatchAlrt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "A jelszavak nem egyeznek!"
+	},
+	"sgnpFormSgnpBtn": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Elküld"
+	},
+	"sgnpFormLgnLink": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Jelentkezzen be"
+	},
+	"sgnpFormLgnPrompt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Van már fiókja?"
+	},
+	"sgnpFormPwMReqAlrt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": {
+			"part1": "túl rövid (min 8.)",
+			"part2": "átlagos",
+			"part3": "jó",
+			"part4": "erős",
+			"part5": "nehéz"
+		}
+	},
+	"sgnpFormPwHelp": {
+		"title": "Signup form password requirement explanation",
+		"description": "A jelszónak tartalmaznia kell számokat valamint kis és nagybetűket!"
 	}
+
 
 }

@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
 	Button,
-	TextField
+	TextField,
+	InputLabel
 } from "@mui/material";
 import ReactLoading from "react-loading";
 import ReactModal from "react-modal";
 import PasswordStrengthBar from "react-password-strength-bar";
 
-import LanguageSelect from "../../languageSelect/languageSelect.component";
+import LanguageSelect from "../../components/languageSelect/languageSelect.component";
 import "../../localization/i18n";
 
 import "./signupForm.styles.scss";
@@ -17,9 +18,9 @@ import "./signupForm.styles.scss";
 
 export default function SignupForm() {
 	const modalWidth = 300,
-		  modalHeight = 100;
+		  modalHeight = 160;
 	const navigate = useNavigate();
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 
 	const [stUsername, setUsername] = useState("");
 	const [stEmail, setEmail] = useState("");
@@ -30,16 +31,12 @@ export default function SignupForm() {
 	const [stIsSigningUp, setIsSigningUp] = useState(false);
 	const [stModalOpen, setModalOpen] = useState(false);
 
-	const changeLanguage = (lng) => {
-		i18n.changeLanguage(lng);
-	};
-
 	const onSignupAttempt = async (event) => {
 		try {
 			if (!stSignupDisabled) {
 				setIsSigningUp(true);
 				const signupResultResponse = await fetch(
-					"/apiv1/users/create",
+					"https://localhost:3001/apiv1/users/create",
 					{
 						method: "POST",
 						body: JSON.stringify({
@@ -105,16 +102,17 @@ export default function SignupForm() {
 							type="text"
 							variant="standard"
 							className="usernameInput"
-							placeholder="felhasználónév"
+							placeholder={t("sgnpFormUsrInputFldPlchdr.description")}
 							onChange={(evt) => {
 								setUsername(evt.target.value);
 							}}
+
 						/>
 						<TextField 
 							type="text"
 							variant="standard"
 							className="emailInput"
-							placeholder="e-mail cím"
+							placeholder={t("sgnpFormEmailInputFldPlchdr.description")}
 							onChange={(evt) => {
 								setEmail(evt.target.value);
 							}}
@@ -122,17 +120,21 @@ export default function SignupForm() {
 						<TextField
 							variant="standard" 
 							type="password"
+							id="passwordInput"
 							className="passwordInput"
-							placeholder="jelszó"
+							placeholder={t("sgnpFormPwInputFldPlchdr.description")}
 							onChange={(evt) => {
 								setPassword(evt.target.value);
 							}}
+							/* onClick={() => {
+								alert(t("sgnpFormPwHelp.description"));
+							}} */
 						/>
 						<TextField 
 							type="password"
 							variant="standard"
 							className="passwordConfirmInput"
-							placeholder="jelszó megerősítése"
+							placeholder={t("sgnpFormPwInputFldPlchdr.description")}
 							onChange={(evt) => {
 								setConfirmPassword(evt.target.value);
 							}}
@@ -141,13 +143,19 @@ export default function SignupForm() {
 							<PasswordStrengthBar 
 								minLength={8}
 								password={stPassword}
-								shortScoreWord={"túl rövid (min. 8)"}
-								scoreWords={["gyenge", "átlagos", "jó", "erős", "nagyon erős"]}
+								shortScoreWord={t("sgnpFormPwMReqAlrt.description.part1")}
+								scoreWords={[
+									t("sgnpFormPwMReqAlrt.description.part1"),
+									t("sgnpFormPwMReqAlrt.description.part2"),
+									t("sgnpFormPwMReqAlrt.description.part3"),
+									t("sgnpFormPwMReqAlrt.description.part4"), 
+									t("sgnpFormPwMReqAlrt.description.part5")
+								]}
 							/>
 						</div>
 						{(!stPwMatching && (stPassword.length || stConfirmPassword.length)) ?
 							<div className="matchingAlert">
-								A beírt jelszavak nem egyeznek!
+								{t("sgnpFormPwMismatchAlrt.description")}
 							</div> : <></>
 						}
 						<Button
@@ -158,13 +166,14 @@ export default function SignupForm() {
 								onSignupAttempt(event);
 							}}
 						>
-							Regisztráció
+							{t("sgnpFormSgnpBtn.description")}
 						</Button>
+						<div className="bottomSeparator" />
+						<p>{t("sgnpFormLgnPrompt.description")}</p>
 						<Link className="loginLink" to="/">
-							<p>Van már fiókja?</p>
+							<p>{t("sgnpFormLgnLink.description")}</p>
 						</Link>
-						{/* jelszó erősség mérő */}
-						{/* avatar? */}
+						{/* avatar feltöltése itt? */}
 					</form>
 				</div>
 			}
@@ -197,6 +206,7 @@ export default function SignupForm() {
 						textAlign: "center",
 						top: `calc(50vh - ${modalHeight / 2}px)`,
 						left: `calc(50vw - ${modalWidth / 2}px)`,
+						padding: 10
 					},
 				}}
 			>

@@ -16,7 +16,7 @@ export default function App() {
         {/* Fiókkal kapcsolatos */}
         <Route index element={<LoginForm />} /> {/* index - alapértelmezett útvonal */}
         <Route path="/signup" element={<SignupForm />} />
-        <Route path="/logout" element= {<SignupForm />} />
+        <Route path="/logout" element= {<LoginForm />} />
 
         {/* App navigáció */}
         <Route path="/home" element={<Home />}>

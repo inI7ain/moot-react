@@ -73,6 +73,14 @@ $modalWidth: 300px;
 			border-radius: $separatorRadius;
 			margin-bottom: unset;
 		}
+
+		.resetBtnFrame {
+			margin: 15px 0px;
+
+			.returnBtn {
+				margin-left: 10px;
+			}
+		}
 	
 		.loginForm {
 			display: flex;
@@ -84,14 +92,10 @@ $modalWidth: 300px;
 				margin-bottom: 10px;
 			}
 
-			.logo {
-				width: 64px;
-				height: 64px;
-			}
-
 			.bottomSeparator {
 				width: 100%;
 				border: 1px solid rgba(68, 168, 168, 50);
+				background-color: 1px solid rgba(68, 168, 168, 50)!important;
 				border-radius: $separatorRadius;
 				margin-bottom: unset;
 			}
@@ -100,6 +104,7 @@ $modalWidth: 300px;
 				background-color: rgba(68, 168, 168, 50);
 				color: white;
 			} */
+
 		}
 
 	}

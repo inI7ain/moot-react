@@ -12,7 +12,7 @@
 		"description": "Login"
 	},
 	"lgnFormEmailPlchdr": {
-		"title": "Login form email input placeholder",
+		"title": "Login form e.mail input placeholder",
 		"description": "e-mail address"
 	},
 	"lgnFormPwPlchldr": {
@@ -43,9 +43,25 @@
 		"title": "Login form unsuccessful login message",
 		"description": "Unable to login. Please try again."
 	},
+	"lgnFormMdlResetMsg": {
+		"title": "Login form unsuccessful login message",
+		"description": "The requested link has been sent to the given address."
+	},
 	"lgnFormMdlCloseBtn": {
 		"title": "Login form unsuccessful login modal close button",
 		"description": "Close"
+	},
+	"lgnFormResetEmailPlchdr": {
+		"title": "Login form unsuccessful login modal close button",
+		"description": "Registered e-mail address"
+	},
+	"lgnFormResetBtn": {
+		"title": "Signup form password requirement explanation",
+		"description": "Send link"
+	},
+	"lgnFormCxlResetBtn": {
+		"title": "Signup form password requirement explanation",
+		"description": "Cancel"
 	},
 	"sgnpFormMdlContLbl": {
 		"title": "Signup form unsuccessful registration modal close button",
@@ -53,7 +69,53 @@
 	},
 	"sgnpFormMdlMsg": {
 		"title": "Signup form unsuccessful registration modal message",
-		"description": "Unable to create account. Please try again."
+		"description": "Unable to create account, please verifiy input fields and please try again. If the issue persists then the servers are likely unreachable."
+	},
+	"sgnpFormUsrInputFldPlchdr": {
+		"title": "Signup form username input field placeholder",
+		"description": "username"
+	},
+	"sgnpFormEmailInputFldPlchdr": {
+		"title": "Signup form e-mail input field placeholder",
+		"description": "e-mail"
+	},
+	"sgnpFormPwInputFldPlchdr": {
+		"title": "Signup form password input field placeholder",
+		"description": "password"
+	},
+	"sgnpFormPwCnfInputFldPlchdr": {
+		"title": "Signup form password input field placeholder",
+		"description": "confirm password"
+	},
+	"sgnpFormPwMismatchAlrt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Passwords do not match"
+	},
+	"sgnpFormSgnpBtn": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Submit"
+	},
+	"sgnpFormLgnLink": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Log in"
+	},
+	"sgnpFormLgnPrompt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Already have an account?"
+	},
+	"sgnpFormPwMReqAlrt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": {
+			"part1": "too short (min 8.)",
+			"part2": "average",
+			"part3": "good",
+			"part4": "strong",
+			"part5": "difficult"
+		}
+	},
+	"sgnpFormPwHelp": {
+		"title": "Signup form password requirement explanation",
+		"description": "Password must contain numbers, lowercase and uppercase letters!"
 	}
 
 

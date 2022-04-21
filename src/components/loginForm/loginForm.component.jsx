@@ -8,7 +8,7 @@ import {
 import ReactLoading from "react-loading";
 import ReactModal from "react-modal";
 
-import LanguageSelect from "../../languageSelect/languageSelect.component";
+import LanguageSelect from "../../components/languageSelect/languageSelect.component";
 import "../../localization/i18n";
 
 import "./loginForm.styles.scss";
@@ -24,6 +24,7 @@ export default function LoginForm() {
 	const [stLoginDisabled, setLoginDisabled] = useState(true);
 	const [stIsLoggingIn, setIsLoggingIn] = useState(false);
 	const [stModalOpen, setModalOpen] = useState(false);
+	const [stPasswordReset, setPasswordReset] = useState(false);
 
 	
 	// muszáj ES6-os fn-nek lennie a this binding miatt
@@ -44,10 +45,8 @@ export default function LoginForm() {
 						},
 					}
 				);
-				console.log(loginResultResponse);
 
 				const loginResult = await loginResultResponse.json();
-				console.log(loginResult);
 
 				if (loginResult?.success) {
 					navigate("/home");
@@ -64,6 +63,27 @@ export default function LoginForm() {
 			setIsLoggingIn(false);
 		}
 	};
+
+	const onPwResetAttempt = async (event) => {
+		try {
+			fetch(
+				"/apiv1/users/resetPassword",
+				{
+					method: "POST",
+					body: JSON.stringify({
+						email: stEmail,
+					}),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
+
+			setModalOpen(true);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	useEffect(() => {
 		// validate isEmail?
@@ -88,60 +108,104 @@ export default function LoginForm() {
 				<div className="loginFormFrame">
 					<h3>Moot</h3>
 					<div className="topSeparator" />
-					<p className="loginMsg">{t("lgnFormLbl.description")}</p>
-					<form
-						className="loginForm"
-						onSubmit={(evt) => evt.preventDefault()}
-					>
-						<TextField
-							name="emailInput"
-							variant="standard"
-							type="text"
-							placeholder={t("lgnFormEmailPlchdr.description")}
-							onChange={(event) => {
-								setEmail(event.target.value);
-							}}
-						/>
-						<TextField
-							name="passwordInput"
-							variant="standard"
-							type="password"
-							placeholder={t("lgnFormPwPlchldr.description")}
-							onChange={(event) => {
-								setPassword(event.target.value);
-							}}
-						/>
-						<Button
-							className="loginBtn"
-							variant="contained"
-							disabled={stLoginDisabled}
-							onClick={(event) => {
-								onLoginAttempt(event);
-							}}
-							type="submit"
-							disableElevation
-						>
-							{t("lgnFormLgnBtn.description")}
-						</Button>
-						<div className="bottomSeparator" />
-						<div className="signUpFrame">
-							<p>{t("lgnFormRegPrompt.description")}</p>
-							<Link
-								className="signupLink"
-								underline="hover"
-								to="/signup"
+					{!stPasswordReset && 
+						<>
+							<p className="loginMsg">{t("lgnFormLbl.description")}</p>
+							<form
+								className="loginForm"
+								onSubmit={(evt) => evt.preventDefault()}
 							>
-								<p>{t("lgnFormRegLnk.description")}</p>
-							</Link>
-						</div>
-						<div className="bottomSeparator" />
-						<div>
-							<p>{t("lgnFormPwResPrompt.description")}</p>
-							<Link className="pwResetLink" to="/pwReset">
-								{t("lgnFormPwResLnk.description")}
-							</Link>
-						</div>
-					</form>
+								<TextField
+									name="emailInput"
+									variant="standard"
+									type="text"
+									placeholder={t("lgnFormEmailPlchdr.description")}
+									onChange={(event) => {
+										setEmail(event.target.value);
+									}}
+								/>
+								<TextField
+									name="passwordInput"
+									variant="standard"
+									type="password"
+									placeholder={t("lgnFormPwPlchldr.description")}
+									onChange={(event) => {
+										setPassword(event.target.value);
+									}}
+								/>
+								<Button
+									className="loginBtn"
+									variant="contained"
+									disabled={stLoginDisabled}
+									onClick={(event) => {
+										onLoginAttempt(event);
+									}}
+									type="submit"
+									disableElevation
+								>
+									{t("lgnFormLgnBtn.description")}
+								</Button>
+								<div className="bottomSeparator" />
+								<div className="signUpFrame">
+									<p>{t("lgnFormRegPrompt.description")}</p>
+									<Link
+										className="signupLink"
+										underline="hover"
+										to="/signup"
+									>
+										<p>{t("lgnFormRegLnk.description")}</p>
+									</Link>
+								</div>
+								<div className="bottomSeparator" />
+								<div>
+									<p>{t("lgnFormPwResPrompt.description")}</p>
+									<Button variant="text" className="pwResetBtn" onClick={() => {
+										setPasswordReset(true);
+									}}>
+										{t("lgnFormPwResLnk.description")}
+									</Button>
+								</div>
+							</form>
+						</>
+					}
+					{stPasswordReset &&
+						<>
+							<TextField
+								name="emailInput"
+								variant="standard"
+								type="text"
+								placeholder={t("lgnFormResetEmailPlchdr.description")}
+								onChange={(event) => {
+									setEmail(event.target.value);
+								}}
+							/>
+							<div className="resetBtnFrame">
+								<Button
+									className="resetBtn"
+									variant="contained"
+									disabled={!stEmail.length}
+									onClick={() => {
+										onPwResetAttempt(stEmail);
+									}}
+									type="submit"
+									disableElevation
+								>
+									{t("lgnFormResetBtn.description")}
+								</Button>
+								<Button
+									className="returnBtn"
+									variant="contained"
+									onClick={(event) => {
+										setPasswordReset(false);
+									}}
+									type="button"
+									disableElevation
+								>
+									{t("lgnFormCxlResetBtn.description")}
+								</Button>
+							</div>			
+						</>
+					}
 				</div>
 			}
 			{stIsLoggingIn &&
@@ -152,7 +216,12 @@ export default function LoginForm() {
 					width={125}
 					disabled={!stIsLoggingIn}
 				/>
-			}	
+			}
+			{stPasswordReset &&
+				<div className="passwordResetFrame">
+
+				</div>
+			}
 			<ReactModal
 				bodyOpenClassName="loginFormModalFrame"
 				isOpen={stModalOpen}
@@ -178,12 +247,20 @@ export default function LoginForm() {
 					},
 				}}
 			>
-				<p>{t("lgnFormMdlMsg.description")}</p>
+				{!stPasswordReset && 
+					<p>{t("lgnFormMdlMsg.description")}</p>
+				}
+				{stPasswordReset && 
+					<p>{t("lgnFormMdlResetMsg.description")}</p>
+				}
 				<Button
 					className="modalCloseBtn"
 					variant="outlined"
 					onClick={(event) => {
 						setModalOpen(false);
+						if(stPasswordReset) { 
+							setPasswordReset(false);
+						}
 					}}
 				>
 					{t("lgnFormMdlCloseBtn.description")}

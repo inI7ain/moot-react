@@ -19,9 +19,9 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: 'hu',
+    fallbackLng: 'en',
     debug: true,
-    lng: "hu",
+    lng: "en",
 	  resources: {
 		  en: { translation: enLocale},
 		  hu: { translation: huLocale},

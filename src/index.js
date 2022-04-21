@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
-import * as serviceWorker from './service-worker.js';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+/* eredeti react service worker confighoz 
+  import * as serviceWorker from './service-worker.js';
+  import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+  import reportWebVitals from './reportWebVitals';
+*/
 import "./localization/i18n";
 
 import './index.scss';

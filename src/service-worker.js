@@ -1,14 +1,16 @@
 /* eslint-disable no-restricted-globals */
 /* eslint no-unused-expressions: "off" */
 
-self.__WB_MANIFEST;
+/* enélkül a kódból nem építhető build a szigorú webpack config 
+miatt amit az npx create-react-app csinál */
+self.__WB_MANIFEST; 
 const PRECACHE = 'precache-v1';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   'index.html',
-  './', // Alias for index.html
+  './', // Alias az index.html-nek (service worker számára)
 ];
 
 // The install handler takes care of precaching the resources we always need.

@@ -1,6 +1,121 @@
 {
-	"loginBtn": {
-		"title": "lamborgini mario gucci capiche",
-		"description": "Accedere"
+	"lgnFormLgnBtn": {
+		"title": "Login screen submit button",
+		"description": "Invio"
+	},
+	"lngSelLbl": {
+		"title": "Language Selector Label",
+		"description": "Lingue"
+	},
+	"lgnFormLbl": {
+		"title": "Login form label",
+		"description": "Accedi"
+	},
+	"lgnFormEmailPlchdr": {
+		"title": "Login form e.mail input placeholder",
+		"description": "indirizzo e-mail"
+	},
+	"lgnFormPwPlchldr": {
+		"title": "Login form password input placeholder",
+		"description": "password"
+	},
+	"lgnFormRegPrompt": {
+		"title": "Login form registration prompt",
+		"description": "Non hai ancora un account?"
+	},
+	"lgnFormRegLnk": {
+		"title": "Login form registration link",
+		"description": "Crea un account"
+	},
+	"lgnFormPwResPrompt": {
+		"title": "Login form password reset prompt",
+		"description": "Hai dimenticato la password?"
+	},
+	"lgnFormPwResLnk": {
+		"title": "Login form password reset Link",
+		"description": "Reset la password"
+	},
+	"lgnFormMdlContLbl": {
+		"title": "Login form modal window label",
+		"description": "Messagio"
+	},
+	"lgnFormMdlMsg": {
+		"title": "Login form unsuccessful login message",
+		"description": "Impossibile fare il login. Per favore, riprova più tardi."
+	},
+	"lgnFormMdlResetMsg": {
+		"title": "Login form unsuccessful login message",
+		"description": "Il link richiesto è stato inviato all'indirizzo indicato."
+	},
+	"lgnFormMdlCloseBtn": {
+		"title": "Login form unsuccessful login modal close button",
+		"description": "Chiudi"
+	},
+	"lgnFormResetEmailPlchdr": {
+		"title": "Login form unsuccessful login modal close button",
+		"description": "Indirizzo email registrato"
+	},
+	"lgnFormResetBtn": {
+		"title": "Signup form password requirement explanation",
+		"description": "Invia il link"
+	},
+	"lgnFormCxlResetBtn": {
+		"title": "Signup form password requirement explanation",
+		"description": "Annulla"
+	},
+	"sgnpFormMdlContLbl": {
+		"title": "Signup form unsuccessful registration modal close button",
+		"description": "Chiudi"
+	},
+	"sgnpFormMdlMsg": {
+		"title": "Signup form unsuccessful registration modal message",
+		"description": "Impossibile creare un account, verifica i campi di input e riprova. Se il problema persiste, è probabile che i server non siano raggiungibili."
+	},
+	"sgnpFormUsrInputFldPlchdr": {
+		"title": "Signup form username input field placeholder",
+		"description": "nome utente"
+	},
+	"sgnpFormEmailInputFldPlchdr": {
+		"title": "Signup form e-mail input field placeholder",
+		"description": "e-mail"
+	},
+	"sgnpFormPwInputFldPlchdr": {
+		"title": "Signup form password input field placeholder",
+		"description": "password"
+	},
+	"sgnpFormPwCnfInputFldPlchdr": {
+		"title": "Signup form password input field placeholder",
+		"description": "conferma password"
+	},
+	"sgnpFormPwMismatchAlrt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "le passwords non corrispondono"
+	},
+	"sgnpFormSgnpBtn": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Invio"
+	},
+	"sgnpFormLgnLink": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Accedi"
+	},
+	"sgnpFormLgnPrompt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": "Hai già un account?"
+	},
+	"sgnpFormPwMReqAlrt": {
+		"title": "Signup form alert for unmatching passwords",
+		"description": {
+			"part1": "troppo breve (min 8.)",
+			"part2": "media",
+			"part3": "bene",
+			"part4": "forte",
+			"part5": "difficile"
+		}
+	},
+	"sgnpFormPwHelp": {
+		"title": "Signup form password requirement explanation",
+		"description": "La password deve contenere numeri, lettere minuscole e maiuscole!"
 	}
+
 }

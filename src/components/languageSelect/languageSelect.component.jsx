@@ -6,6 +6,8 @@ import {
 	FormControl,
 } from "@mui/material";
 
+import "../../localization/i18n";
+
 import "./languageSelect.styles.scss";
 
 export default function LanguageSelect() {
@@ -14,13 +16,14 @@ export default function LanguageSelect() {
 
 	const changeLanguage = (lng) => {
 		i18n.changeLanguage(lng);
+		console.log("i18n fired", lng);
 	};
 
 	return (
 		<FormControl
 			className="languageSelectorFrame"
 			variant="standard"
-			sx={{ m: 1, minWidth: 120 }}
+			sx={{ m: 1, minWidth: 100 }}
 		>
 			<InputLabel
 				className="languageSelectorLabel"
@@ -32,7 +35,7 @@ export default function LanguageSelect() {
 				placeholder="Language"
 				labelId="lngSelectLabel"
 				className="languageSelector"
-				defaultValue={"hu"}
+				defaultValue={"en"}
 				label="Language"
 			>
 				<MenuItem
